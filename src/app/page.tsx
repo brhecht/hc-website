@@ -255,7 +255,7 @@ export default function Home() {
         {/* Footer */}
         <hr className="section-divider mb-10" />
         <p className="text-center tracking-widest uppercase text-gray-500" style={{ fontSize: "0.75em" }}>
-          &copy; 2025 Humble Conviction Corp.
+          &copy; 2026 Humble Conviction Corp.
         </p>
       </main>
     </div>
