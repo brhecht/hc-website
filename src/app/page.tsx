@@ -26,238 +26,228 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black" style={{ fontSize: "clamp(16px, 1.1vw, 20px)" }}>
-      {/* Use viewport-relative width so it scales proportionally on any screen */}
-      <main className="mx-auto w-[85%] py-16 md:py-24">
+    <div className="min-h-screen bg-white text-black font-sans">
+      {/* ── Header ── */}
+      <header className="w-full border-b border-[#e3e3e3]">
+        <div className="max-w-[1200px] mx-auto px-8 py-8">
+          <h1 className="text-center text-sm font-bold tracking-[0.35em] uppercase">
+            Humble Conviction
+          </h1>
+        </div>
+      </header>
 
-        {/* Header */}
-        <h1 className="text-center font-bold tracking-[0.3em] uppercase mb-20" style={{ fontSize: "0.85em" }}>
-          Humble Conviction
-        </h1>
-
-        {/* Divider */}
-        <hr className="section-divider mb-20" />
-
-        {/* Hero: Two Column */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-20 items-center">
-          {/* Left: Big Question */}
-          <div>
-            <h2 className="font-bold leading-[1.1] tracking-tight" style={{ fontSize: "clamp(2.5rem, 4vw, 4.5rem)" }}>
-              What&apos;s<br />Your<br />Founder<br />Story?
-            </h2>
-          </div>
-
-          {/* Right: Pitch + Intro */}
-          <div className="md:border-l md:border-[#e3e3e3] md:pl-16">
-            <h3 className="font-bold mb-6" style={{ fontSize: "clamp(1.5rem, 2vw, 2.2rem)" }}>
-              Pitch Better,<br />Get Funded Faster
-            </h3>
-            <p className="leading-relaxed mb-3">
-              Hi, I&apos;m{" "}
-              <a
-                href="https://www.linkedin.com/in/brianhecht/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline font-semibold"
-              >
-                Brian
-              </a>
-            </p>
-            <p className="leading-relaxed mb-3">
-              I&apos;m an investor who&apos;s spent a decade helping hundreds of founders find
-              investment faster through better storytelling.
-            </p>
-            <p className="leading-relaxed mb-3">
-              I&apos;m now building Humble Conviction to bring the same proven strategies to
-              you -- free of cost.
-            </p>
-            <p className="leading-relaxed font-medium">
-              Because it&apos;s time to stop raising and start building.
-            </p>
+      {/* ── Hero Section ── full bleed white */}
+      <section className="w-full py-20 md:py-28">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-center">
+            <div>
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
+                What&apos;s<br />Your<br />Founder<br />Story?
+              </h2>
+            </div>
+            <div className="md:border-l md:border-[#e3e3e3] md:pl-14">
+              <h3 className="text-2xl md:text-3xl font-bold mb-6 leading-tight">
+                Pitch Better,<br />Get Funded Faster
+              </h3>
+              <p className="text-lg leading-relaxed mb-3">
+                Hi, I&apos;m{" "}
+                <a
+                  href="https://www.linkedin.com/in/brianhecht/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline font-semibold"
+                >
+                  Brian
+                </a>
+              </p>
+              <p className="text-lg leading-relaxed mb-3">
+                I&apos;m an investor who&apos;s spent a decade helping hundreds of founders find
+                investment faster through better storytelling.
+              </p>
+              <p className="text-lg leading-relaxed mb-3">
+                I&apos;m now building Humble Conviction to bring the same proven strategies to
+                you &mdash; free of cost.
+              </p>
+              <p className="text-lg leading-relaxed font-medium">
+                Because it&apos;s time to stop raising and start building.
+              </p>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Divider */}
-        <hr className="section-divider mb-20" />
-
-        {/* Email Capture Section */}
-        <div className="mb-20">
-          <h2 className="font-bold mb-2" style={{ fontSize: "clamp(1.8rem, 2.5vw, 3rem)" }}>
+      {/* ── Email Capture ── full bleed dark */}
+      <section className="w-full bg-[#0a0a0a] text-white py-16 md:py-20">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">
             Your investor-tested insights are waiting
           </h2>
-          <p className="font-bold tracking-wide uppercase mb-8" style={{ fontSize: "0.8em" }}>
+          <p className="text-sm font-bold tracking-wide uppercase mb-8 text-gray-400">
             Get my free &quot;29-Second Pitch Playbook&quot; + Newsletter
           </p>
 
           {submitted ? (
-            <div className="bg-black text-white rounded-lg p-8 text-center">
+            <div className="bg-white/10 border border-white/20 rounded-lg p-8 text-center">
               <p className="text-xl font-semibold">You&apos;re in! Check your inbox.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 items-start">
+            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-2xl">
               <input
                 type="email"
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full sm:flex-1 sm:max-w-sm px-5 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/50"
               />
               <input
                 type="text"
                 placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full sm:flex-1 sm:max-w-xs px-5 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/50"
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="bg-black text-white px-10 py-3.5 rounded-lg font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 whitespace-nowrap"
+                className="bg-white text-black px-8 py-3.5 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 whitespace-nowrap"
               >
                 {submitting ? "Sending..." : "Get the Playbook + Newsletter"}
               </button>
             </form>
           )}
         </div>
+      </section>
 
-        {/* Divider */}
-        <hr className="section-divider mb-20" />
+      {/* ── Videos + Call for Founders ── full bleed light gray */}
+      <section className="w-full bg-[#f7f7f7] py-16 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold mb-4">Watch the Videos:</h3>
+              <p className="mb-5 text-base">
+                Subscribe to my YouTube channel:{" "}
+                <a
+                  href="https://www.youtube.com/@HumbleConvictionStartups"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline font-medium"
+                >
+                  @HumbleConvictionStartups
+                </a>
+              </p>
+              <div className="aspect-video w-full rounded-lg overflow-hidden bg-black shadow-lg">
+                <iframe
+                  src="https://www.youtube.com/embed/_3601d3OpYY"
+                  title="Humble Conviction - Startup Pitch Essentials"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
 
-        {/* Two Column: Videos + Call for Founders */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-20">
-          {/* Watch the Videos */}
-          <div>
-            <h3 className="font-bold mb-4" style={{ fontSize: "clamp(1.3rem, 1.6vw, 1.8rem)" }}>Watch the Videos:</h3>
-            <p className="mb-5">
-              Subscribe to my YouTube channel:{" "}
-              <a
-                href="https://www.youtube.com/@HumbleConvictionStartups"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline font-medium"
-              >
-                @HumbleConvictionStartups
-              </a>
-            </p>
-            <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
-              <iframe
-                src="https://www.youtube.com/embed/_3601d3OpYY"
-                title="Humble Conviction - Startup Pitch Essentials"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
+            <div className="flex flex-col justify-center">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">Call for Founders:</h3>
+              <p className="text-base leading-relaxed mb-4">
+                If you&apos;re a founder who would like to level up their investor pitch, you may
+                be a candidate to be featured on Humble Conviction&apos;s YouTube channel...We&apos;ll
+                fine tune your story and workshop your pitch. It&apos;s great practice...and great
+                publicity!
+              </p>
+              <p className="text-base leading-relaxed mb-8">
+                If you&apos;re interested, reach out by email and we&apos;ll have a chat to see if
+                there might be a match.
+              </p>
+              <div>
+                <a
+                  href="mailto:brhnyc1970@gmail.com"
+                  className="inline-flex items-center gap-2 bg-black text-white px-8 py-3.5 rounded-lg font-medium hover:bg-gray-800 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="16" x="2" y="4" rx="2" />
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                  </svg>
+                  Email Me!
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Bio Section ── full bleed white */}
+      <section className="w-full py-16 md:py-24">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-12 md:gap-20 items-start">
+            <div>
+              <h3 className="text-3xl md:text-4xl font-bold leading-tight mb-10">
+                Why Humble Conviction?<br />And why me?
+              </h3>
+              <div className="text-base leading-relaxed space-y-4">
+                <p>
+                  I&apos;ve spent my entire career in the world of startups, mostly here in NYC.
+                  I&apos;ve exited four companies, three as founder, and one as the first hire
+                  (still counts!)
+                </p>
+                <p>
+                  I&apos;ve also spent the past ten years with ERA, the top accelerator in New
+                  York, first as a mentor, then investing as a partner overseeing the accelerator.
+                </p>
+                <p>
+                  In that time, I&apos;ve mentored hundreds of companies, interviewed thousands of
+                  founders, and coached more than 2,500 pitches.
+                </p>
+                <p className="text-center text-gray-400">&#x2022; &#x2022; &#x2022;</p>
+                <p>
+                  <strong>Here&apos;s what motivates me:</strong> Startup founders have one
+                  overarching problem.
+                </p>
+                <p>
+                  It&apos;s not the lack of a good idea, an ingenious product, or a big enough
+                  market opportunity.
+                </p>
+                <p>
+                  It&apos;s that most of them simply can&apos;t explain what they&apos;re building
+                  and why. <em>They can&apos;t tell their own story.</em>
+                </p>
+                <p>
+                  But here&apos;s the good news: it&apos;s fixable. And I&apos;m here to help.
+                </p>
+                <p>
+                  So I&apos;ve taken on a new mission: to make everything I&apos;ve learned and
+                  taught over decades available to every entrepreneur, wherever they are, cost-free.
+                </p>
+                <p>
+                  I (and my content) are easy to find: Try my newsletter, watch on YouTube, follow
+                  me on LinkedIn, email me.
+                </p>
+                <p className="font-medium">
+                  So let&apos;s go! I&apos;m here to help you pitch strong...and stay humble!
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start justify-center pt-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/headshot.jpg"
+                alt="Brian Hecht"
+                className="w-full max-w-[440px] rounded-lg object-cover"
               />
             </div>
           </div>
-
-          {/* Call for Founders */}
-          <div className="flex flex-col justify-center">
-            <h3 className="font-bold mb-4" style={{ fontSize: "clamp(1.3rem, 1.6vw, 1.8rem)" }}>Call for Founders:</h3>
-            <p className="leading-relaxed mb-4">
-              If you&apos;re a founder who would like to level up their investor pitch, you may
-              be a candidate to be featured on Humble Conviction&apos;s YouTube channel...We&apos;ll
-              fine tune your story and workshop your pitch. It&apos;s great practice...and great
-              publicity!
-            </p>
-            <p className="leading-relaxed mb-8">
-              If you&apos;re interested, reach out by email and we&apos;ll have a chat to see if
-              there might be a match.
-            </p>
-            <div>
-              <a
-                href="mailto:brhnyc1970@gmail.com"
-                className="inline-flex items-center gap-2 bg-black text-white px-10 py-3.5 rounded-lg font-medium hover:bg-gray-800 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect width="20" height="16" x="2" y="4" rx="2" />
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                </svg>
-                Email Me!
-              </a>
-            </div>
-          </div>
         </div>
+      </section>
 
-        {/* Divider */}
-        <hr className="section-divider mb-20" />
-
-        {/* Bottom Bio Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 mb-20 items-start">
-          {/* Left: Text */}
-          <div>
-            <h3 className="font-bold leading-tight mb-10" style={{ fontSize: "clamp(1.8rem, 2.5vw, 3rem)" }}>
-              Why Humble Conviction?<br />And why me?
-            </h3>
-            <p className="leading-relaxed mb-4">
-              I&apos;ve spent my entire career in the world of startups, mostly here in NYC.
-              I&apos;ve exited four companies, three as founder, and one as the first hire
-              (still counts!)
-            </p>
-            <p className="leading-relaxed mb-4">
-              I&apos;ve also spent the past ten years with ERA, the top accelerator in New
-              York, first as a mentor, then investing as a partner overseeing the accelerator.
-            </p>
-            <p className="leading-relaxed mb-4">
-              In that time, I&apos;ve mentored hundreds of companies, interviewed thousands of
-              founders, and coached more than 2,500 pitches.
-            </p>
-            <p className="mb-4">******</p>
-            <p className="leading-relaxed mb-4">
-              <strong>Here&apos;s what motivates me:</strong> Startup founders have one
-              overarching problem.
-            </p>
-            <p className="leading-relaxed mb-4">
-              It&apos;s not the lack of a good idea, an ingenious product, or a big enough
-              market opportunity.
-            </p>
-            <p className="leading-relaxed mb-4">
-              It&apos;s that most of them simply can&apos;t explain what they&apos;re building
-              and why. <em>They can&apos;t tell their own story.</em>
-            </p>
-            <p className="leading-relaxed mb-4">
-              But here&apos;s the good news: it&apos;s fixable. And I&apos;m here to help.
-            </p>
-            <p className="leading-relaxed mb-4">
-              So I&apos;ve taken on a new mission: to make everything I&apos;ve learned and
-              taught over decades available to every entrepreneur, wherever they are, cost-free.
-            </p>
-            <p className="leading-relaxed mb-4">
-              I (and my content) are easy to find: Try my newsletter, watch on YouTube, follow
-              me on LinkedIn, email me.
-            </p>
-            <p className="leading-relaxed font-medium">
-              So let&apos;s go! I&apos;m here to help you pitch strong...and stay humble!
-            </p>
-          </div>
-
-          {/* Right: Headshot */}
-          <div className="flex items-start justify-center pt-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/headshot.jpg"
-              alt="Brian Hecht"
-              className="w-full max-w-[500px] rounded-lg object-cover"
-            />
-          </div>
+      {/* ── Footer ── full bleed */}
+      <footer className="w-full border-t border-[#e3e3e3] py-8">
+        <div className="max-w-[1200px] mx-auto px-8">
+          <p className="text-center text-xs tracking-widest uppercase text-gray-400">
+            &copy; 2026 Humble Conviction Corp.
+          </p>
         </div>
-
-        {/* Footer */}
-        <hr className="section-divider mb-10" />
-        <p className="text-center tracking-widest uppercase text-gray-500" style={{ fontSize: "0.75em" }}>
-          &copy; 2026 Humble Conviction Corp.
-        </p>
-      </main>
+      </footer>
     </div>
   );
 }
