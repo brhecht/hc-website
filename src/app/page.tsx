@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white text-black" style={{ fontSize: "clamp(16px, 1.1vw, 20px)" }}>
       {/* Use viewport-relative width so it scales proportionally on any screen */}
-      <main className="mx-auto w-[85%] max-w-[1600px] py-16 md:py-24">
+      <main className="mx-auto w-[85%] py-16 md:py-24">
 
         {/* Header */}
         <h1 className="text-center font-bold tracking-[0.3em] uppercase mb-20" style={{ fontSize: "0.85em" }}>
