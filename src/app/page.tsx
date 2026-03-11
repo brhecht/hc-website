@@ -26,20 +26,20 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans">
-      {/* ── Header ── */}
-      <header className="w-full border-b border-[#e3e3e3]">
-        <div className="max-w-[1200px] mx-auto px-8 py-8">
-          <h1 className="text-center text-sm font-bold tracking-[0.35em] uppercase">
+    <div className="min-h-screen bg-[#f5f5f5]">
+      {/* Centered content card — targets ~1920px screens */}
+      <div className="max-w-[1600px] mx-auto bg-white min-h-screen shadow-[0_0_60px_rgba(0,0,0,0.06)]">
+        <div className="px-16 md:px-24 lg:px-32 py-16 md:py-24 text-black">
+
+          {/* Header */}
+          <h1 className="text-center text-sm font-bold tracking-[0.35em] uppercase mb-16">
             Humble Conviction
           </h1>
-        </div>
-      </header>
 
-      {/* ── Hero Section ── full bleed white */}
-      <section className="w-full py-20 md:py-28">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-center">
+          <hr className="border-t border-[#e3e3e3] mb-16" />
+
+          {/* Hero: Two Column */}
+          <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 mb-16 items-center">
             <div>
               <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
                 What&apos;s<br />Your<br />Founder<br />Story?
@@ -73,56 +73,54 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── Email Capture ── full bleed dark */}
-      <section className="w-full bg-[#0a0a0a] text-white py-16 md:py-20">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
-            Your investor-tested insights are waiting
-          </h2>
-          <p className="text-sm font-bold tracking-wide uppercase mb-8 text-gray-400">
-            Get my free &quot;29-Second Pitch Playbook&quot; + Newsletter
-          </p>
+          <hr className="border-t border-[#e3e3e3] mb-16" />
 
-          {submitted ? (
-            <div className="bg-white/10 border border-white/20 rounded-lg p-8 text-center">
-              <p className="text-xl font-semibold">You&apos;re in! Check your inbox.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-2xl">
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/50"
-              />
-              <input
-                type="text"
-                placeholder="Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="flex-1 px-5 py-3.5 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-white/50"
-              />
-              <button
-                type="submit"
-                disabled={submitting}
-                className="bg-white text-black px-8 py-3.5 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 whitespace-nowrap"
-              >
-                {submitting ? "Sending..." : "Get the Playbook + Newsletter"}
-              </button>
-            </form>
-          )}
-        </div>
-      </section>
+          {/* Email Capture */}
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-2">
+              Your investor-tested insights are waiting
+            </h2>
+            <p className="text-sm font-bold tracking-wide uppercase mb-8 text-gray-500">
+              Get my free &quot;29-Second Pitch Playbook&quot; + Newsletter
+            </p>
 
-      {/* ── Videos + Call for Founders ── full bleed light gray */}
-      <section className="w-full bg-[#f7f7f7] py-16 md:py-24">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            {submitted ? (
+              <div className="bg-black text-white rounded-lg p-8 text-center max-w-2xl">
+                <p className="text-xl font-semibold">You&apos;re in! Check your inbox.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-3xl">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-1 px-5 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:border-black text-base"
+                />
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="flex-1 px-5 py-3.5 border border-gray-300 rounded-lg focus:outline-none focus:border-black text-base"
+                />
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="bg-black text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 whitespace-nowrap text-base"
+                >
+                  {submitting ? "Sending..." : "Get the Playbook + Newsletter"}
+                </button>
+              </form>
+            )}
+          </div>
+
+          <hr className="border-t border-[#e3e3e3] mb-16" />
+
+          {/* Videos + Call for Founders */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 mb-16">
             <div>
               <h3 className="text-xl md:text-2xl font-bold mb-4">Watch the Videos:</h3>
               <p className="mb-5 text-base">
@@ -136,7 +134,7 @@ export default function Home() {
                   @HumbleConvictionStartups
                 </a>
               </p>
-              <div className="aspect-video w-full rounded-lg overflow-hidden bg-black shadow-lg">
+              <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
                 <iframe
                   src="https://www.youtube.com/embed/_3601d3OpYY"
                   title="Humble Conviction - Startup Pitch Essentials"
@@ -173,13 +171,11 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── Bio Section ── full bleed white */}
-      <section className="w-full py-16 md:py-24">
-        <div className="max-w-[1200px] mx-auto px-8">
-          <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-12 md:gap-20 items-start">
+          <hr className="border-t border-[#e3e3e3] mb-16" />
+
+          {/* Bio Section */}
+          <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-12 md:gap-20 mb-16 items-start">
             <div>
               <h3 className="text-3xl md:text-4xl font-bold leading-tight mb-10">
                 Why Humble Conviction?<br />And why me?
@@ -237,17 +233,14 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* ── Footer ── full bleed */}
-      <footer className="w-full border-t border-[#e3e3e3] py-8">
-        <div className="max-w-[1200px] mx-auto px-8">
+          {/* Footer */}
+          <hr className="border-t border-[#e3e3e3] mb-10" />
           <p className="text-center text-xs tracking-widest uppercase text-gray-400">
             &copy; 2026 Humble Conviction Corp.
           </p>
         </div>
-      </footer>
+      </div>
     </div>
   );
 }
