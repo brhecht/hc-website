@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <main className="mx-auto px-8 py-16 md:px-16 lg:px-32 xl:px-48 md:py-20">
+      <main className="mx-auto max-w-[1100px] px-8 py-16 md:px-12 md:py-20">
         {/* Header */}
         <h1 className="text-center text-sm font-bold tracking-[0.3em] uppercase mb-16">
           Humble Conviction
