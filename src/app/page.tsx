@@ -74,13 +74,31 @@ export default function Home() {
 
         <hr className="border-t border-[#e3e3e3] mb-16" />
 
-        {/* Email Capture — centered */}
+        {/* Quiz CTA — Primary */}
         <div className="mb-16 max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
-            Your investor-tested insights are waiting
+            Find Out What Investors See — Before They Tell You
           </h2>
           <p className="text-sm font-bold tracking-wide uppercase mb-8 text-gray-500">
-            Get my free &quot;29-Second Pitch Playbook&quot; + Newsletter
+            Free 3-minute assessment based on 2,500+ pitches analyzed
+          </p>
+          <a
+            href="https://quiz.humbleconviction.com"
+            className="inline-block bg-black text-white px-10 py-4 rounded-lg font-semibold hover:bg-gray-800 transition-colors text-lg"
+          >
+            Take the Founder Assessment
+          </a>
+        </div>
+
+        <hr className="border-t border-[#e3e3e3] mb-16" />
+
+        {/* Newsletter — Secondary */}
+        <div className="mb-16 max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-2">
+            Stay in the loop
+          </h2>
+          <p className="text-sm font-bold tracking-wide uppercase mb-8 text-gray-500">
+            Get investor-tested insights in your inbox every week
           </p>
 
           {submitted ? (
@@ -109,7 +127,7 @@ export default function Home() {
                 disabled={submitting}
                 className="bg-black text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 whitespace-nowrap text-base"
               >
-                {submitting ? "Sending..." : "Get the Playbook + Newsletter"}
+                {submitting ? "Sending..." : "Subscribe to Newsletter"}
               </button>
             </form>
           )}
