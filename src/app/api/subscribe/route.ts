@@ -1,43 +1,47 @@
 import { NextResponse } from "next/server";
 
 /**
- * Kit (ConvertKit) subscribe proxy.
- * Same pattern as hc-funnel/api/subscribe.js — keeps API key server-side
- * and avoids ad-blocker interception.
+ * Beehiiv subscribe proxy.
+ * Env vars needed in Vercel: BEEHIIV_API_KEY, BEEHIIV_PUBLICATION_ID
  */
 export async function POST(request: Request) {
   try {
-    const { email, name } = await request.json();
+    const { email } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
 
-    const apiKey = process.env.KIT_API_KEY;
-    const formId = process.env.KIT_FORM_ID;
+    const apiKey = process.env.BEEHIIV_API_KEY;
+    const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
 
-    if (!apiKey || !formId) {
-      console.error("Kit not configured — missing KIT_API_KEY or KIT_FORM_ID");
+    if (!apiKey || !publicationId) {
+      console.error("Beehiiv not configured — missing BEEHIIV_API_KEY or BEEHIIV_PUBLICATION_ID");
       return NextResponse.json({ error: "Email service not configured" }, { status: 500 });
     }
 
-    const kitRes = await fetch(
-      `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
+    const res = await fetch(
+      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`,
+        },
         body: JSON.stringify({
-          api_key: apiKey,
           email,
-          first_name: name || undefined,
+          utm_source: "website",
+          utm_medium: "organic",
+          referring_site: "humbleconviction.com",
+          send_welcome_email: true,
         }),
       }
     );
 
-    const data = await kitRes.json();
+    const data = await res.json();
 
-    if (!kitRes.ok) {
-      return NextResponse.json(data, { status: 400 });
+    if (!res.ok) {
+      return NextResponse.json(data, { status: res.status });
     }
 
     return NextResponse.json({ success: true });
