@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The New Builder</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      color: #000;
+      background: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 48px 8% 64px;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .nav-wordmark {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #000;
+    }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #000; }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+    .hero h1 {
+      font-size: clamp(48px, 7vw, 86px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+    }
+    .hero-sub {
+      font-size: 22px;
+      line-height: 1.5;
+      color: #6b7280;
+      margin-top: 28px;
+      max-width: 480px;
+    }
+    .hero-photo {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .hero-photo img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    /* Divider */
+    hr {
+      border: none;
+      border-top: 1px solid #e5e7eb;
+      margin-bottom: 64px;
+    }
+
+    /* Story */
+    .story {
+      margin-bottom: 64px;
+      max-width: 720px;
+    }
+    .story h2 {
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+    .story-body {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #374151;
+    }
+    .story-body p { margin-bottom: 20px; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body .closer {
+      font-weight: 600;
+      color: #000;
+    }
+
+    /* Find Me */
+    .find-me { margin-bottom: 64px; }
+    .find-me h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 32px;
+    }
+    .find-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .find-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      transition: border-color 0.2s;
+    }
+    .find-card:hover { border-color: #9ca3af; }
+    .find-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .find-icon svg { color: #4b5563; }
+    .find-label { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .find-desc { font-size: 14px; color: #6b7280; line-height: 1.5; }
+
+    /* Video */
+    .video-section { margin-bottom: 64px; }
+    .video-section h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* Subscribe */
+    .subscribe { margin-bottom: 64px; }
+    .subscribe h2 {
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .subscribe-desc {
+      font-size: 18px;
+      color: #6b7280;
+      margin-bottom: 28px;
+      max-width: 500px;
+    }
+    .subscribe-form {
+      display: flex;
+      gap: 12px;
+      max-width: 540px;
+    }
+    .subscribe-form input {
+      padding: 14px 18px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .subscribe-form input:focus { border-color: #000; }
+    .subscribe-form input[type="email"] { flex: 1; min-width: 0; }
+    .subscribe-form input[type="text"] { width: 160px; }
+    .subscribe-form button {
+      background: #000;
+      color: #fff;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .subscribe-form button:hover { background: #1f2937; }
+
+    /* Bio */
+    .bio { margin-bottom: 64px; max-width: 720px; }
+    .bio h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+    .bio p {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #374151;
+      margin-bottom: 16px;
+    }
+    .bio p:last-child { margin-bottom: 0; }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      border-top: 1px solid #e5e7eb;
+      padding: 24px 8%;
+    }
+    .footer-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copy {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9ca3af;
+    }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #000; }
+
+    /* Responsive — Tablet */
+    @media (max-width: 768px) {
+      .nav { margin-bottom: 48px; }
+      .nav-links { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-photo { justify-content: center; }
+      .hero-photo img { max-width: 280px; }
+      .story { max-width: 100%; }
+      .find-grid { grid-template-columns: 1fr 1fr; }
+      .find-me h2 { font-size: 26px; }
+      .video-wrap { max-width: 100%; }
+      .subscribe-form { flex-direction: column; }
+      .subscribe-form input[type="text"] { width: 100%; }
+      .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* Responsive — Phone */
+    @media (max-width: 480px) {
+      main { padding: 32px 6% 48px; }
+      .nav { margin-bottom: 36px; }
+      .nav-wordmark { font-size: 15px; }
+      .hero-photo img { max-width: 220px; }
+      .hero h1 { font-size: 42px; }
+      .hero-sub { font-size: 18px; }
+      .find-grid { grid-template-columns: 1fr; }
+      .find-card { padding: 20px; }
+      .subscribe-form input[type="email"] { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+
+    <!-- Nav -->
+    <nav class="nav">
+      <span class="nav-wordmark">The New Builder</span>
+      <div class="nav-links">
+        <a href="https://www.youtube.com/@the_new_builder" target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/brianhecht/" target="_blank">LinkedIn</a>
+        <a href="mailto:brian@humbleconviction.com">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-photo" style="justify-content: flex-start;">
+        <img src="https://placehold.co/400x480/f3f4f6/9ca3af?text=Brian" alt="Brian Hecht" />
+      </div>
+      <div>
+        <h1>Navigating<br>the AI era.<br>Together.</h1>
+        <p class="hero-sub">Bringing founders together to rethink how companies get built, with AI as the foundation, not just a tool.</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Story -->
+    <section class="story">
+      <h2>Why I'm building this.</h2>
+      <div class="story-body">
+        <p>I've been a founder and investor for 30+ years. I never wrote a line of code. Then I started building with AI, and couldn't stop.</p>
+        <p>Every serious conversation I was having about startups had shifted to the same question: what does it actually mean to build a company now that the rules have changed?</p>
+        <p>The people who figure it out will be the ones building right now and comparing notes, not reading about it from the sidelines. The New Builder is where that happens, through content, conversations, and community.</p>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- What TNB Is -->
+    <section class="find-me">
+      <h2>Builders Figuring it Out. Together.</h2>
+      <div class="find-grid">
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+              <line x1="12" x2="12" y1="19" y2="22"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">Podcast</div>
+            <div class="find-desc">Weekly conversations with founders and builders navigating the AI era.</div>
+          </div>
+        </div>
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">YouTube</div>
+            <div class="find-desc">20K subscribers. Podcast companion and original content.</div>
+          </div>
+        </div>
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">Newsletter</div>
+            <div class="find-desc">Weekly hot takes from Brian and thoughtful builders in the field.</div>
+          </div>
+        </div>
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">The War Room</div>
+            <div class="find-desc">A premium mastermind for founders who want to go deeper with real-time peer learning.</div>
+          </div>
+        </div>
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">Meetups</div>
+            <div class="find-desc">No pitches, no agenda, just AI builders socializing and sharing notes.</div>
+          </div>
+        </div>
+
+        <div class="find-card">
+          <div class="find-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="find-label">Curated Events</div>
+            <div class="find-desc">Invite-only roundtables and dinners for a smaller group of builders going deeper.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Latest Episode -->
+    <section class="video-section">
+      <h2>Latest Episode</h2>
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+          title="The New Builder Podcast"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
+
+    <hr />
+
+    <!-- Subscribe -->
+    <section class="subscribe" id="subscribe">
+      <h2>Stay in the loop</h2>
+      <p class="subscribe-desc">A weekly newsletter for founders building in the AI era. Brian's take + hot takes from builders in the field.</p>
+      <form class="subscribe-form" onsubmit="event.preventDefault(); this.innerHTML='<p style=\'font-size:18px;font-weight:600;\'>You\'re in. Watch your inbox.</p>';">
+        <input type="email" placeholder="Email" required />
+        <input type="text" placeholder="First name" />
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <hr />
+
+    <!-- Bio -->
+    <section class="bio">
+      <h2>About Brian</h2>
+      <p>Brian Hecht is a 4x exited founder and former Managing Director of ERA, New York's top startup accelerator, where he spent a decade coaching 2,500+ pitches and investing in early-stage companies.</p>
+      <p>He now spends most of his time building with AI, advising founders, and hosting live events in NYC. The New Builder is where all of that comes together.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-copy">&copy; 2026 The New Builder</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/brianhecht/" target="_blank">LinkedIn</a>
+        <a href="https://www.youtube.com/@the_new_builder" target="_blank">YouTube</a>
+        <a href="mailto:brian@humbleconviction.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
