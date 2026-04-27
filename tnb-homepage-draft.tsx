@@ -184,7 +184,7 @@ export default function Home() {
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Latest episode</h2>
           <div className="aspect-video w-full max-w-3xl rounded-xl overflow-hidden bg-black">
             <iframe
-              src="https://www.youtube.com/embed/VIDEO_ID_HERE"
+              src="https://www.youtube.com/embed/bKFXxGx6JhI"
               title="The New Builder Podcast"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

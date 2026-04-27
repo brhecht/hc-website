@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [latestVideoId, setLatestVideoId] = useState("bKFXxGx6JhI");
+  const [latestVideoTitle, setLatestVideoTitle] = useState("Humble Conviction - Latest Episode");
+
+  useEffect(() => {
+    fetch("/api/latest-video")
+      .then((r) => r.json())
+      .then(({ videoId, title }) => {
+        if (videoId) setLatestVideoId(videoId);
+        if (title) setLatestVideoTitle(title);
+      })
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -152,8 +164,8 @@ export default function Home() {
             </p>
             <div className="aspect-video w-full rounded-lg overflow-hidden bg-black">
               <iframe
-                src="https://www.youtube.com/embed/_3601d3OpYY"
-                title="Humble Conviction - Startup Pitch Essentials"
+                src={`https://www.youtube.com/embed/${latestVideoId}`}
+                title={latestVideoTitle}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
